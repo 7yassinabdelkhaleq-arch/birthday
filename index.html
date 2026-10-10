@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عيد ميلاد ابو الفناكيش</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: radial-gradient(circle, #1a1a2e 0%, #16213e 100%);
+        overflow: hidden;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* صندوق الهدية الشبابي */
+      .gift-box {
+        position: absolute;
+        width: 290px;
+        height: 290px;
+        background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 35px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 15px 35px rgba(255, 117, 140, 0.4);
+        z-index: 1000;
+      }
+
+      .gift-box:hover {
+        transform: scale(1.08) rotate(2deg);
+        box-shadow: 0 20px 45px rgba(255, 117, 140, 0.6);
+      }
+
+      .gift-box p {
+        color: white;
+        font-size: 1.6rem;
+        font-weight: bold;
+        text-align: center;
+        line-height: 1.6;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .gift-box small {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        background: rgba(0, 0, 0, 0.15);
+        padding: 4px 12px;
+        border-radius: 20px;
+        display: inline-block;
+        margin-top: 8px;
+      }
+
+      /* حاوية التورتة */
+      .cake-wrapper {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+        animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+
+      @keyframes popUp {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* رقم 19 الذهبي - ستايل فخم */
+      .age-number {
+        font-size: 120px;
+        font-weight: 900;
+        margin-bottom: 10px;
+        background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 5px 15px rgba(253, 160, 133, 0.4));
+        animation: pulseNum 2s infinite ease-in-out;
+      }
+
+      @keyframes pulseNum {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.04);
+        }
+      }
+
+      /* الشمعة */
+      .candle {
+        width: 16px;
+        height: 55px;
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        border-radius: 6px;
+        position: relative;
+        z-index: 15;
+        transform: translateY(-400px);
+        opacity: 0;
+      }
+
+      .candle.drop {
+        animation: candleDrop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+          forwards;
+      }
+
+      @keyframes candleDrop {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .flame {
+        width: 18px;
+        height: 28px;
+        background: #ffd166;
+        border-radius: 50% 50% 20% 20%;
+        position: absolute;
+        top: -30px;
+        left: -1px;
+        box-shadow:
+          0 0 25px #ffd166,
+          0 0 50px #ffb703;
+        animation: flicker 0.12s infinite alternate;
+      }
+
+      /* التورتة - 3 أدوار */
+      .layer {
+        border-radius: 20px 20px 0 0;
+        box-shadow: inset 0 -10px 0 rgba(0, 0, 0, 0.1);
+      }
+      .layer-1 {
+        width: 280px;
+        height: 75px;
+        background: #ff70a6;
+      }
+      .layer-2 {
+        width: 210px;
+        height: 65px;
+        background: #ff97b7;
+        margin-top: -5px;
+      }
+      .layer-3 {
+        width: 130px;
+        height: 55px;
+        background: #ffccd5;
+        margin-top: -5px;
+      }
+
+      /* رسالة التهنئة الشبابية */
+      .greeting-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        padding: 15px 30px;
+        border-radius: 20px;
+        margin-top: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        text-align: center;
+      }
+
+      .greeting-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .greeting-card li {
+        color: #fff;
+        font-size: 1.25rem;
+        margin: 6px 0;
+        font-weight: 600;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      /* البالونات */
+      .balloon {
+        position: absolute;
+        bottom: -150px;
+        width: 55px;
+        height: 75px;
+        border-radius: 50%;
+        z-index: 5;
+        animation: flyUp 6s linear forwards;
+      }
+      .balloon::after {
+        content: "";
+        position: absolute;
+        bottom: -18px;
+        left: 50%;
+        width: 2px;
+        height: 18px;
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      /* ورق الزينة */
+      .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: -20px;
+        z-index: 500;
+        animation: fall linear forwards;
+      }
+
+      @keyframes flicker {
+        from {
+          transform: scale(1);
+          opacity: 0.85;
+        }
+        to {
+          transform: scale(1.15);
+          opacity: 1;
+        }
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(110vh) rotate(1080deg);
+        }
+      }
+      @keyframes flyUp {
+        to {
+          transform: translateY(-120vh) translateX(50px);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- صندوق الهدية -->
+    <div class="gift-box" id="gift" onclick="celebrate()">
+      <p>
+        Happy Birthday to you Anas ❤️💯🎉<br />
+        <small>(ابو الفناكيش)</small>
+      </p>
+    </div>
+
+    <!-- التورتة والاحتفال -->
+    <div class="cake-wrapper" id="cake">
+      <div class="age-number">16</div>
+      <div class="candle" id="mainCandle">
+        <div class="flame"></div>
+      </div>
+      <div class="layer layer-3"></div>
+      <div class="layer layer-2"></div>
+      <div class="layer layer-1"></div>
+
+      <div class="greeting-card">
+        <ul>
+          <li>كل سنة وانت طيب يا وحش وبصحة وسلامة ❤️🎂</li>
+          <li>وعقبال شوخروميت سنة نجاح وفلوس وسعادة! 🚀</li>
+          <li>و عقبال ما تكبر كده وتبقى فحل ومعضل زاي عمك ياسين 🦹‍♂️💪</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      function celebrate() {
+        document.getElementById("gift").style.display = "none";
+        document.getElementById("cake").style.display = "flex";
+
+        // تفعيل نزول الشمعة
+        setTimeout(() => {
+          document.getElementById("mainCandle").classList.add("drop");
+        }, 100);
+
+        // إطلاق ورق الزينة (تم تصحيح الأخطاء البرمجية في الـ Loops السابقة)
+        for (let i = 0; i < 150; i++) {
+          setTimeout(createConfetti, i * 15);
+        }
+
+        // إطلاق البالونات
+        for (let j = 0; j < 20; j++) {
+          setTimeout(createBalloon, j * 250);
+        }
+      }
+
+      function createConfetti() {
+        const colors = [
+          "#ff70a6",
+          "#ff97b7",
+          "#4cc9f0",
+          "#4895ef",
+          "#f72585",
+          "#ffb703",
+          "#ffd700",
+          "#00f5d4",
+        ];
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor =
+          colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+        confetti.style.borderRadius = Math.random() > 0.5 ? "50%" : "3px";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 6000);
+      }
+
+      function createBalloon() {
+        const colors = ["#ff4d6d", "#4cc9f0", "#ffb703", "#9b5de5", "#00f5d4"];
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.backgroundColor =
+          colors[Math.floor(Math.random() * colors.length)];
+        balloon.style.opacity = "0.85";
+        document.body.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 7000);
+      }
+    </script>
+  </body>
+</html>
